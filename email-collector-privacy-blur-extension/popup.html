@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Collector & Privacy Blur</title>
+    <link rel="stylesheet" href="css/popup.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <img src="icons/icon32.png" alt="Extension Icon" class="logo-icon">
+                <h1 class="title">Email Collector</h1>
+            </div>
+            <div class="toggle-section">
+                <label class="toggle-label">
+                    <input type="checkbox" id="blurToggle" class="toggle-input">
+                    <span class="toggle-slider"></span>
+                    <span class="toggle-text">Privacy Blur</span>
+                </label>
+            </div>
+        </header>
+
+        <nav class="nav-tabs">
+            <button class="tab-btn active" data-tab="emails">Emails</button>
+            <button class="tab-btn" data-tab="analytics">Analytics</button>
+            <button class="tab-btn" data-tab="settings">Settings</button>
+        </nav>
+
+        <main class="content">
+            <!-- Emails Tab -->
+            <div class="tab-content active" id="emails-tab">
+                <div class="stats-row">
+                    <div class="stat-card">
+                        <span class="stat-number" id="totalEmails">0</span>
+                        <span class="stat-label">Total Emails</span>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number" id="todayEmails">0</span>
+                        <span class="stat-label">Today</span>
+                    </div>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn btn-primary" id="extractBtn">
+                        <span class="btn-icon">📧</span>
+                        Extract Emails
+                    </button>
+                    <button class="btn btn-secondary" id="exportBtn">
+                        <span class="btn-icon">📥</span>
+                        Export CSV
+                    </button>
+                </div>
+
+                <div class="email-list-container">
+                    <h3 class="section-title">Recent Emails</h3>
+                    <div class="email-list" id="emailList">
+                        <!-- Email items will be populated here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Analytics Tab -->
+            <div class="tab-content" id="analytics-tab">
+                <div class="chart-container">
+                    <h3 class="section-title">Email Collection Analytics</h3>
+                    <canvas id="emailChart" width="300" height="200"></canvas>
+                </div>
+                
+                <div class="domain-stats">
+                    <h3 class="section-title">Top Domains</h3>
+                    <div class="domain-list" id="domainList">
+                        <!-- Domain stats will be populated here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Settings Tab -->
+            <div class="tab-content" id="settings-tab">
+                <div class="settings-section">
+                    <h3 class="section-title">Privacy Settings</h3>
+                    
+                    <div class="setting-item">
+                        <label class="setting-label">
+                            <input type="checkbox" id="autoBlur" class="setting-checkbox">
+                            <span class="checkmark"></span>
+                            Auto-blur on page load
+                        </label>
+                    </div>
+
+                    <div class="setting-item">
+                        <label class="setting-label">
+                            <input type="range" id="blurIntensity" class="setting-range" min="1" max="10" value="5">
+                            <span class="range-label">Blur Intensity: <span id="blurValue">5</span></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="settings-section">
+                    <h3 class="section-title">Email Collection</h3>
+                    
+                    <div class="setting-item">
+                        <label class="setting-label">
+                            <input type="checkbox" id="autoExtract" class="setting-checkbox">
+                            <span class="checkmark"></span>
+                            Auto-extract emails on page load
+                        </label>
+                    </div>
+
+                    <div class="setting-item">
+                        <label class="setting-label">
+                            <input type="checkbox" id="duplicateFilter" class="setting-checkbox" checked>
+                            <span class="checkmark"></span>
+                            Filter duplicate emails
+                        </label>
+                    </div>
+                </div>
+
+                <div class="settings-section">
+                    <button class="btn btn-danger" id="clearDataBtn">
+                        <span class="btn-icon">🗑️</span>
+                        Clear All Data
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/popup.js"></script>
+</body>
+</html>
+
